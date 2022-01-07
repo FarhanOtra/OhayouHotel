@@ -48,7 +48,7 @@ class BookingController extends Controller
 
         $date = Carbon::now()->toDateString();
         $check_in = $request->input('check_in');
-        $check_out = $request->input('check_in');
+        $check_out = $request->input('check_out');
         $days = $request->input('days');
         $booking_tipe = $request->input('booking_tipe');
         $room_id = $request->input('room_id');
