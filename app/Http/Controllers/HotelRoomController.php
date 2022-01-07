@@ -20,7 +20,7 @@ class HotelRoomController extends Controller
      */
     public function index()
     {
-        $hotelroom = DB::select("SELECT hotel_room.id, hotel_room.nomor, tipe_room.tipe, tipe_room.harga, tipe_room.deskripsi, tipe_room.kapasitas FROM hotel_room join tipe_room on hotel_room.tipe_id=tipe_room.id;");
+        $hotelroom = DB::select("SELECT hotel_room.id, hotel_room.nomor, tipe_room.tipe, tipe_room.harga, tipe_room.deskripsi, tipe_room.kapasitas, tipe_room.imageurl FROM hotel_room join tipe_room on hotel_room.tipe_id=tipe_room.id;");
         $response = new \stdClass();
         $response->tanggal = Carbon::now()->toDateString();
         $response->hotelroom = $hotelroom;
