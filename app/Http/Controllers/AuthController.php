@@ -33,7 +33,7 @@ class AuthController extends Controller
             'no_telepon' => $no_telepon
         ]);
 
-        return response()->json(['message' => 'Pendaftaran pengguna berhasil dilaksanakan']);
+        return response()->json(['message' => 'Registrasi Berhasil']);
     }
 
     public function login(Request $request)
