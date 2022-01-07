@@ -20,5 +20,6 @@ $router->group(['prefix' => 'auth'], function() use($router){
 
 $router->group(['prefix' => 'api','middleware' => 'auth'], function () use ($router) {
     $router->get('hotelroom', ['uses' => 'HotelRoomController@index']);
+    $router->get('hotelroom/{id}',['uses' => 'HotelRoomController@store']);
     $router->post('booking',['uses' => 'BookingController@store']);
 });
