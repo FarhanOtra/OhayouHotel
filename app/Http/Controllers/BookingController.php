@@ -86,9 +86,24 @@ class BookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        $id = $request->id;
+        $status = $request->status;
+
+        $booking = Booking::find($id);
+
+        if ($booking) {
+            $this->sendNotification();
+
+            $booking->status = $status;
+         
+            $booking->save();
+    
+            return response()->json(['success' => true,'message' => 'Status Booking Berhasil Diperbaharui'],200);
+        } else {
+            return response()->json(['success' => false,'message' => 'Post Tidak Ditemukan!',], 404);
+        }
     }
 
     /**

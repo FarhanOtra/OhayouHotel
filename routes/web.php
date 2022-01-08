@@ -23,3 +23,7 @@ $router->group(['prefix' => 'api','middleware' => 'auth'], function () use ($rou
     $router->get('hotelroom/{id}',['uses' => 'HotelRoomController@show']);
     $router->post('booking',['uses' => 'BookingController@store']);
 });
+
+$router->group(['prefix' => 'api'], function () use ($router) {
+    $router->put('booking/editstatus', ['uses' => 'BookingController@edit']);
+});
