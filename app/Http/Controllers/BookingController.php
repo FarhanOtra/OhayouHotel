@@ -88,6 +88,11 @@ class BookingController extends Controller
      */
     public function edit(Request $request)
     {
+        $this->validate($request, [
+            'id' => 'required',
+            'status' => 'required',
+        ]);
+
         $id = $request->id;
         $status = $request->status;
 
@@ -102,7 +107,7 @@ class BookingController extends Controller
     
             return response()->json(['success' => true,'message' => 'Status Booking Berhasil Diperbaharui'],200);
         } else {
-            return response()->json(['success' => false,'message' => 'Post Tidak Ditemukan!',], 404);
+            return response()->json(['success' => false,'message' => 'Booking Tidak Ditemukan!',], 404);
         }
     }
 
