@@ -18,7 +18,7 @@ class HistoryController extends Controller
     public function index()
     {
         $user_id = auth('api')->user()->id;
-        $post = DB::select("SELECT booking.id as booking_id, booking.date as date, booking.check_in as check_in, booking.check_out as check_out, booking.days as days, booking.status as status, booking.booking_tipe as booking_tipe, users.nama as username, hotel_room.nomor as nomor_room, tipe_room.tipe as tipe_room, tipe_room.harga as harga_room, tipe_room.imageurl as imageurl FROM booking join hotel_room on booking.room_id=hotel_room.id join tipe_room on hotel_room.tipe_id=tipe_room.id join users on booking.user_id=users.id WHERE booking.user_id=? ORDER BY booking.date ASC;", [$user_id]);
+        $post = DB::select("SELECT booking.id as booking_id, booking.date as date, booking.check_in as check_in, booking.check_out as check_out, booking.days as days, booking.status as status, booking.booking_tipe as booking_tipe, users.nama as username, hotel_room.nomor as nomor_room, tipe_room.tipe as tipe_room, tipe_room.harga as harga_room, tipe_room.imageurl as imageurl FROM booking join hotel_room on booking.room_id=hotel_room.id join tipe_room on hotel_room.tipe_id=tipe_room.id join users on booking.user_id=users.id WHERE booking.user_id=? ORDER BY booking.created_at DESC;", [$user_id]);
         if ($post) {
             return response()->json([
                 'success'   => true,
