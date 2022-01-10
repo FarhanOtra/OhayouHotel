@@ -25,6 +25,7 @@ $router->group(['prefix' => 'api','middleware' => 'auth'], function () use ($rou
     $router->get('history',['uses' => 'HistoryController@index']);
     $router->get('user',['uses' => 'UserController@show']);
     $router->put('user/edit',['uses' => 'UserController@edit']);
+    $router->put('/password', 'UserController@changePassword');
 });
 
 $router->group(['prefix' => 'api'], function () use ($router) {

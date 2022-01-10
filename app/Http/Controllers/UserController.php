@@ -36,9 +36,42 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function changePassword(Request $request)
     {
-        //
+        $user_id = auth('api')->user()->id;
+
+        $this->validate($request, [
+            'passwordlama' => 'required',
+            'passwordbaru' => 'required',
+            'passwordconf' => 'required'
+        ]);
+        
+            $user = User::find($user_id);
+
+            if ($user) {
+            $isValidPassword = Hash::check($request->passwordlama, $user->password);
+                if (!$isValidPassword) {
+                    return response()->json(['message' => 'Password Lama Salah'], 401);
+                }else{
+                    if($request->passwordbaru==$request->passwordconf){
+                        $user->password = Hash::make($request->passwordbaru) ;
+                    }else{
+                        return response()->json(['message' => 'Password Baru Tidak Sama'], 401);
+                    }
+                }
+                $user->save();
+        
+                return response()->json([
+                    'success'   => true,
+                    'message'   => 'Berhasil Merubah Password'
+                ], 200);
+
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Post Tidak Ditemukan!',
+                ], 404);
+            }
     }
 
 
