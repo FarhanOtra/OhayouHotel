@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Carbon\Carbon;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use DB;
 
 class UserController extends Controller
@@ -42,10 +43,10 @@ class UserController extends Controller
 
         $this->validate($request, [
             'passwordlama' => 'required',
-            'passwordbaru' => 'required',
-            'passwordconf' => 'required'
+            'passwordbaru' => 'required|min:6',
+            'passwordconf' => 'required|min:6'
         ]);
-        
+
             $user = User::find($user_id);
 
             if ($user) {
