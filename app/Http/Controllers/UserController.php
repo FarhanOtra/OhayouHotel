@@ -79,9 +79,9 @@ class UserController extends Controller
         $user_id = auth('api')->user()->id;
 
         $this->validate($request, [
-            'email' => 'required|email|unique:users,email'.$user_id,
+            'email' => 'required|email|unique:users,email,'.$user_id,
             'nama' => 'required',
-            'nik' => 'required|unique:users,nik'.$user_id,
+            'nik' => 'required|unique:users,nik,'.$user_id,
             'no_telepon' => 'required'
         ]);
         
