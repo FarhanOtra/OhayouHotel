@@ -76,6 +76,14 @@ class UserController extends Controller
      */
     public function edit(Request $request)
     {
+        $this->validate($request, [
+            'email' => 'required|unique:users|email',
+            'password' => 'required|min:6',
+            'nama' => 'required',
+            'nik' => 'required|unique:users',
+            'no_telepon' => 'required'
+        ]);
+        
         $user_id = auth('api')->user()->id;
 
         $user = User::find($user_id);
