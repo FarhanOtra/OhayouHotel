@@ -30,4 +30,5 @@ $router->group(['prefix' => 'api','middleware' => 'auth'], function () use ($rou
 
 $router->group(['prefix' => 'api'], function () use ($router) {
     $router->put('booking/editstatus', ['uses' => 'BookingController@edit']);
+    $router->put('booking/sendPromo', ['uses' => 'BookingController@promo']);
 });
