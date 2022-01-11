@@ -182,8 +182,8 @@ class BookingController extends Controller
     CURLOPT_POSTFIELDS =>'{
         "to":"/topics/booking",
         "notification": {
-            "title": "Promo Awal tahun!",
-            "body": "Dapatkan Diskon sampai 30% di Awal Tahun untuk Setiap Pemesanan Kamar!"
+            "title": "Kaget Banget Loh! Promo Awal tahun!",
+            "body": "Dapatkan Diskon sampai 30% di Awal Tahun!"
         }
     }',
     CURLOPT_HTTPHEADER => array(
