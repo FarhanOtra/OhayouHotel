@@ -167,7 +167,7 @@ class BookingController extends Controller
 
     }
 
-    public function prmo(){
+    public function promo(){
         $curl = curl_init();
 
     curl_setopt_array($curl, array(
