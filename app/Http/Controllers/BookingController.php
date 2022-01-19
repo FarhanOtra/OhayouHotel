@@ -99,7 +99,7 @@ class BookingController extends Controller
         $booking = Booking::find($id);
 
         if ($booking) {
-            $this->sendNotification();
+            $this->sendNotification($status);
 
             $booking->status = $status;
          
@@ -143,31 +143,57 @@ class BookingController extends Controller
         //
     }
 
-    public function sendNotification(){
+    public function sendNotification($status){
 
     $curl = curl_init();
 
-    curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://fcm.googleapis.com/fcm/send',
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_ENCODING => '',
-    CURLOPT_MAXREDIRS => 10,
-    CURLOPT_TIMEOUT => 0,
-    CURLOPT_FOLLOWLOCATION => true,
-    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-    CURLOPT_CUSTOMREQUEST => 'POST',
-    CURLOPT_POSTFIELDS =>'{
-        "to":"/topics/booking",
-        "notification": {
-            "title": "Booking Kamar Hotel Berhasil",
-            "body": "Proses Pemesanan Kamar Hotel Berhasil Dilakukan!"
-        }
-    }',
-    CURLOPT_HTTPHEADER => array(
-        'Authorization: key=AAAAEK5ZbB8:APA91bE4aZAgX35ygRJ5n8R9stVTjhTNMY3l7eS1gCZ1oPbBpWF0aci34dYlnwnP8FuadBnFnx-566MBXkE1GxFL-w2KYjTopQGGSKMJ-1PmLGvZMT3FIO4QorkS_2oT_t9X32Ofgq-H',
-        'Content-Type: application/json'
-    ),
-    ));
+    if($status==2){
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://fcm.googleapis.com/fcm/send',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS =>'{
+            "to":"/topics/booking",
+            "notification": {
+                "title": "Booking Kamar Hotel Berhasil",
+                "body": "Proses Pemesanan Kamar Hotel Berhasil Dilakukan!"
+            }
+        }',
+        CURLOPT_HTTPHEADER => array(
+            'Authorization: key=AAAAEK5ZbB8:APA91bE4aZAgX35ygRJ5n8R9stVTjhTNMY3l7eS1gCZ1oPbBpWF0aci34dYlnwnP8FuadBnFnx-566MBXkE1GxFL-w2KYjTopQGGSKMJ-1PmLGvZMT3FIO4QorkS_2oT_t9X32Ofgq-H',
+            'Content-Type: application/json'
+        ),
+        ));
+    }
+    
+    if($status==3){
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://fcm.googleapis.com/fcm/send',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS =>'{
+            "to":"/topics/booking",
+            "notification": {
+                "title": "Booking Kamar Hotel Berhasil",
+                "body": "Proses Pemesanan Kamar Hotel Gagal Dilakukan!"
+            }
+        }',
+        CURLOPT_HTTPHEADER => array(
+            'Authorization: key=AAAAEK5ZbB8:APA91bE4aZAgX35ygRJ5n8R9stVTjhTNMY3l7eS1gCZ1oPbBpWF0aci34dYlnwnP8FuadBnFnx-566MBXkE1GxFL-w2KYjTopQGGSKMJ-1PmLGvZMT3FIO4QorkS_2oT_t9X32Ofgq-H',
+            'Content-Type: application/json'
+        ),
+        ));
+    }
 
     $response = curl_exec($curl);
 
