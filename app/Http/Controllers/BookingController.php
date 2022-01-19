@@ -104,8 +104,17 @@ class BookingController extends Controller
             $booking->status = $status;
          
             $booking->save();
-    
-            return response()->json(['success' => true,'message' => 'Status Booking Berhasil Diperbaharui'],200);
+
+            if($status==1){
+                return response()->json(['success' => true,'message' => 'Status Booking Sedang di Proses'],200);
+            }
+            if($status==2){
+                return response()->json(['success' => true,'message' => 'Room Hotel Berhasil Dibooking'],200);
+            }
+            if($status==3){
+                return response()->json(['success' => true,'message' => 'Room Hotel Gagal Dibooking'],200);
+            }
+       
         } else {
             return response()->json(['success' => false,'message' => 'Booking Tidak Ditemukan!',], 404);
         }
