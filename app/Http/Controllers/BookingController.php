@@ -184,7 +184,7 @@ class BookingController extends Controller
         CURLOPT_POSTFIELDS =>'{
             "to":"/topics/booking",
             "notification": {
-                "title": "Booking Kamar Hotel Berhasil",
+                "title": "Booking Kamar Hotel Gagal",
                 "body": "Proses Pemesanan Kamar Hotel Gagal Dilakukan!"
             }
         }',
